@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react';
 import './randomquote.css';
 
 const RandomQuote = () => {
+    // This holds array of multiple quotes (all quotes)
     const [quotes, setQuotes] = useState([]);
+
+    // This holds single quote object that is currentlt being displayed
+    // when random quote is selected, this state updated to reflect new quote
     const [quote, setQuote] = useState({
         quote: 'Difficulties increase the nearer we get to the goal.',
         author: 'Johann Wolfgang von Goethe',
@@ -23,11 +27,13 @@ const RandomQuote = () => {
         loadQuotes();
     },[]);
 
-    // Function to get random quote
+    // Function to get random quote from the quotes array if it contains any quotes (quotes.length > 0)
     const random = () => {
         if(quotes.length > 0){
+            // generate the random index based on the length of the quotes array
             const select = quotes[Math.floor(Math.random() * quotes.length)];
             setQuote(select);
+            // updates the quote state with the selected quote object, which changes the displayed quote.
         }
     }
 
